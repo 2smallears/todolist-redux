@@ -1,14 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {createStore} from 'redux'
 import reducer from './reducers/app-reducer'
 import  Todo from './containter/add'
 import {Provider} from 'react-redux'
 import TodoList from './containter/todoList'
+import addMiddle from  './middleware/addtodo'
+import todoslist from './middleware/todolist'
+import { createStore, applyMiddleware } from 'redux'
 
-let store = createStore(reducer);
+let createStoreWithMiddleWare = applyMiddleware(addMiddle,todoslist)(createStore);
+let store = createStoreWithMiddleWare(reducer);
 
 const App = React.createClass({
+    componentDidMount(){
+      store.dispatch({type: 'GETTODOS'});
+    },
     render: function () {
         return <div>
             <Todo />
