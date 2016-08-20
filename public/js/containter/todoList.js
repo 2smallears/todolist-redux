@@ -31,8 +31,8 @@ function mapDispatchToProps(dispatch) {
         changeState: (index)=> {
             dispatch({type: 'CHANGE', index})
         },
-        onDelete: (index)=> {
-            dispatch({type: 'DELETE', index})
+        onDelete: (id)=> {
+            dispatch({type: 'DELETE', id})
         }
     }
 }
