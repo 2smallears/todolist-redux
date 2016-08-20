@@ -30,8 +30,21 @@ app.delete('/deltodos', (req, res)=> {
 })
 
 app.post('/changestate', (req, res)=> {
-    todos[req.body.index].isDone=!todos[req.body.index].isDone;
+    todos[req.body.index].isDone = !todos[req.body.index].isDone;
     res.json(todos)
+})
+
+app.post('/todosfooter', (req, res)=> {
+    if(req.body.filtername==='ALL'){
+        res.json(todos);
+    }else if (req.body.filtername==='ACTIVE'){
+        let a=todos.filter(todo=>!todo.isDone);
+        res.json(a);
+    }else {
+        let ta=todos.filter(todo=>todo.isDone);
+        res.json(ta);
+    }
+
 })
 
 var server = app.listen(3000, function () {

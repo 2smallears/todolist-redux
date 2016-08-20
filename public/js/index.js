@@ -8,10 +8,12 @@ import addMiddle from  './middleware/addtodo'
 import todoslist from './middleware/todolist'
 import deletetodo from './middleware/deletetodo'
 import changestate from './middleware/changestate'
+import todosfooter from './middleware/todosfooter'
+import TodoFooter from './containter/footer'
 
 import { createStore, applyMiddleware } from 'redux'
 
-let createStoreWithMiddleWare = applyMiddleware(addMiddle,todoslist,deletetodo,changestate)(createStore);
+let createStoreWithMiddleWare = applyMiddleware(addMiddle,todoslist,deletetodo,changestate,todosfooter)(createStore);
 let store = createStoreWithMiddleWare(reducer);
 
 const App = React.createClass({
@@ -22,6 +24,7 @@ const App = React.createClass({
         return <div>
             <Todo />
             <TodoList />
+            <TodoFooter />
         </div>;
     }
 });
