@@ -24,11 +24,16 @@ app.post('/addtodos', (req, res)=> {
 });
 
 app.delete('/deltodos', (req, res)=> {
-    console.log(todos);
     const index = todos.find(todo => todo.id === req.body)
     todos.splice(index, 1);
     res.json(todos)
 })
+
+app.post('/changestate', (req, res)=> {
+    todos[req.body.index].isDone=!todos[req.body.index].isDone;
+    res.json(todos)
+})
+
 var server = app.listen(3000, function () {
     var port = server.address().port;
     console.log('listening at port %s', port);

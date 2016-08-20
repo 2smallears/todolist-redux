@@ -7,9 +7,11 @@ import TodoList from './containter/todoList'
 import addMiddle from  './middleware/addtodo'
 import todoslist from './middleware/todolist'
 import deletetodo from './middleware/deletetodo'
+import changestate from './middleware/changestate'
+
 import { createStore, applyMiddleware } from 'redux'
 
-let createStoreWithMiddleWare = applyMiddleware(addMiddle,todoslist,deletetodo)(createStore);
+let createStoreWithMiddleWare = applyMiddleware(addMiddle,todoslist,deletetodo,changestate)(createStore);
 let store = createStoreWithMiddleWare(reducer);
 
 const App = React.createClass({
